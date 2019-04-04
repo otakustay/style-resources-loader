@@ -14,11 +14,11 @@ const normalizePatterns = (patterns: StyleResourcesLoaderOptions['patterns']) =>
 
 const normalizeInjector = (injector: StyleResourcesLoaderOptions['injector']): StyleResourcesNormalizedInjector => {
     if (isUndefined(injector) || injector === 'prepend') {
-        return (source, resources) => resources.map(({ content }) => content).join('') + source;
+        return (source, resources) => resources.map(({ content }) => content).join('\n') + '\n' + source;
     }
 
     if (injector === 'append') {
-        return (source, resources) => source + resources.map(({ content }) => content).join('');
+        return (source, resources) => source + '\n' + resources.map(({ content }) => content).join('\n');
     }
 
     return injector;
